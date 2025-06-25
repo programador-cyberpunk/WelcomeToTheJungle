@@ -1,55 +1,74 @@
-import React from "react";
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import styles from './styles';
-
-import React from "react";
-import { SafeAreaView, StyleSheet, Text, View, Button, ScrollView } from 'react-native';
-import styles from './styles';
+// screens/HomeScreen.js
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 
 export default function HomeScreen({ navigation }) {
-    const LugaresSP = [
-        { nome: 'Ibira', rota: 'pontoIbira', site: 'siteIbira' },
-        { nome: 'Soho', rota: 'pontoSoho', site: 'siteIbira' },
-        { nome: 'Paulista', rota: 'pontoPaulista', site: 'sitePaulista' },
-        { nome: 'LagoBatata', rota: 'pontoBatata', site: 'siteBatata' },
-        { nome: 'Zoo SP', rota: 'pontoZoo', site: 'siteZoo' },
-    ];
-
     return (
-        <SafeAreaView style={styles.container}>
-            <ScrollView>
-                <Text style={styles.title}>
-                    De um bizu nos roles de SP, a selva de pedra (pra combinar com o nome)
-                </Text>
-                <Text style={styles.paragraph}>
-                    Escolha um lugar e prepare-se pra morrer.
-                </Text>
+        <ScrollView style={styles.container}>
+            <Text style={styles.title}>Explore São Paulo!</Text>
 
-                {LugaresSP.map((ponto) => (
-                    <View key={ponto.rota} style={styles.buttonContainer}>
-                        <Button
-                            title={ponto.nome}
-                            onPress={() => navigation.navigate(ponto.rota)}
-                            color="#841584"
-                        />
-                    </View>
-                ))}
+            <TouchableOpacity
+                style={styles.card}
+                onPress={() => navigation.navigate('Ibira')}
+            >
+                <Text style={styles.cardTitle}>Parque do Ibirapuera</Text>
+                <Text style={styles.cardDescription}>O pulmão verde da cidade, com muita cultura e lazer.</Text>
+            </TouchableOpacity>
 
-                <View style={styles.buttonContainer}>
-                    <Button
-                        title="Sobre"
-                        onPress={() => navigation.navigate('Sobre')}
-                        color={'#5a5a9a'}
-                    />
-                </View>
-                <View style={styles.buttonContainer}>
-                    <Button
-                        title="Contatos"
-                        onPress={() => navigation.navigate('Contatos')}
-                        color={'#5a5a9a'}
-                    />
-                </View>
-            </ScrollView>
-        </SafeAreaView>
+            <TouchableOpacity
+                style={styles.card}
+                onPress={() => navigation.navigate('Anhangabau')}
+            >
+                <Text style={styles.cardTitle}>Vale do Anhangabaú</Text>
+                <Text style={styles.cardDescription}>Espaço cultural e de eventos no coração de SP.</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+                style={styles.card}
+                onPress={() => navigation.navigate('Paulista')}
+            >
+                <Text style={styles.cardTitle}>Avenida Paulista</Text>
+                <Text style={styles.cardDescription}>O centro financeiro e cultural mais famoso de SP.</Text>
+            </TouchableOpacity>
+
+        </ScrollView>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#E6E6FA', // Um lilás claro
+        padding: 20,
+        paddingTop: 50, // Ajusta para não ficar embaixo da barra de status
+    },
+    title: {
+        fontSize: 32,
+        fontWeight: 'bold',
+        color: '#4B0082', // Um roxo escuro
+        marginBottom: 30,
+        textAlign: 'center',
+    },
+    card: {
+        backgroundColor: '#FFFFFF',
+        borderRadius: 15,
+        padding: 20,
+        marginBottom: 20,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.1,
+        shadowRadius: 6,
+        elevation: 8,
+    },
+    cardTitle: {
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: '#4B0082',
+        marginBottom: 5,
+    },
+    cardDescription: {
+        fontSize: 16,
+        color: '#555',
+        lineHeight: 24,
+    },
+});
